@@ -1,0 +1,32 @@
+{
+  "vi": {
+    "menu": "Thực đơn",
+    "story": "Giới thiệu",
+    "feedback": "Đánh giá",
+    "contact": "Liên hệ",
+    "login": "Đăng nhập",
+    "logout": "Đăng xuất",
+    "stater": "Khai vị",
+    "pho": "Phở",
+    "noodles": "'Bún'",
+    "drinks": "Đồ uống",
+    "find": "Tìm món ăn...",
+    "add_to_cart": "Thêm vào giỏ"
+  },
+  "en": {
+    "home": "Home",
+    "contact": "Contact",
+    "about": "About",
+    "login": "Login",
+    "logout": "Logout",
+    "username": "Username"
+  },
+  "ru": {
+    "home": "Домашняя",
+    "contact": "Контакт",
+    "about": "О нас",
+    "login": "Вход",
+    "logout": "Выход",
+    "username": "Пользователя"
+  }
+}

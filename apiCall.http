@@ -1,0 +1,102 @@
+# Menu
+
+## @name getAllMenu
+GET http://localhost:3000/api/menu
+
+###
+
+## @name getOneItem
+GET http://localhost:3000/api/menu/1
+
+###
+
+## @name getItemsByCategory
+GET http://localhost:3000/api/menu?categoryId=1
+
+###
+
+## @name filterByName
+GET http://localhost:3000/api/menu?name_like=pho
+
+###
+
+## @name sortAscByPrice
+GET http://localhost:3000/api/menu/?_sort=price&_order=asc
+
+###
+
+## @name sortAscByPrice
+GET http://localhost:3000/api/menu/?_sort=price&_order=desc
+
+###
+
+## @name addNewItem
+POST http://localhost:3000/api/menu
+Content-Type: application/json
+
+{
+    "name": "Food Test",
+    "price": 8,
+    "image": "https://i.pinimg.com/564x/82/c0/dc/82c0dc0c61fef15bb165953dce1be723.jpg",
+    "categoryId": 1,
+    "detail": {
+      "desc": "Banh Ran Doraemon",
+      "ingredients": "Beans, Flour, Eggs, Milk",
+      "nutritions": {
+        "kcal": 120,
+        "fat": 7,
+        "protein": 12,
+        "carbs": 15.3,
+        "fibre": 1
+      }
+    }
+}
+
+###
+
+## @name updateItem
+PATCH http://localhost:3000/api/menu/31
+Content-Type: application/json
+
+{
+    "name": "New Food Test #2"
+}
+
+###
+
+## @name removeItem
+DELETE  http://localhost:3000/api/menu/31
+
+###
+
+# Categories
+
+## @name getAllCategories
+GET http://localhost:3000/api/categories
+
+###
+
+## @name getCategory
+GET http://localhost:3000/api/categories/2
+
+###
+
+## @name getFeedbacks
+GET http://localhost:3000/api/feedback
+
+###
+## @name deleteFeedbacks
+DELETE http://localhost:3000/api/feedback/9
+
+###
+## @name postFeedback
+POST http://localhost:3000/api/feedback/
+Content-Type: application/json
+
+{
+    "username": "userabc",
+    "avatar": "",
+    "rating": 4,
+    "feedback": "Donec quis dui leo. Praesent purus leo, vestibulum ut euismod quis, maximus faucibus velit. Orci."
+}
+
