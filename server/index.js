@@ -104,8 +104,6 @@ server.post("/register", (req, res) => {
 
 
 
-
-
 // Use default router
 server.use('/api', router)
 server.listen(3000, () => {
