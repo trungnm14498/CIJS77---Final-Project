@@ -8,10 +8,10 @@ const Login = () => {
                 <div className='h-[3px] bg-cf-gradient' />
             </div>
 
-            <form className="w-full max-w-sm mx-auto mt-28">
+            <form className="w-full max-w-sm mx-auto mt-28" action="/" method="post">
                 <div className="md:flex md:items-center mb-6">
                     <div className="md:w-1/3">
-                        <label className="block text-dimWhite font-semibold text-lg md:text-right mb-1 md:mb-0 pr-4" for="username">
+                        <label className="block text-dimWhite font-semibold text-lg md:text-right mb-1 md:mb-0 pr-4" htmlFor="username">
                             User Name
                         </label>
                     </div>
@@ -21,7 +21,7 @@ const Login = () => {
                 </div>
                 <div className="md:flex md:items-center mb-6">
                     <div className="md:w-1/3">
-                        <label className="block text-dimWhite font-semibold text-lg md:text-right mb-1 md:mb-0 pr-4" for="password">
+                        <label className="block text-dimWhite font-semibold text-lg md:text-right mb-1 md:mb-0 pr-4" htmlFor="password">
                             Password
                         </label>
                     </div>
@@ -41,7 +41,7 @@ const Login = () => {
                 <div className="md:flex md:items-center">
                     <div className="md:w-1/3"></div>
                     <div className="md:w-2/3">
-                        <button className="shadow btn-sub focus:shadow-outline focus:outline-none font-semibold text-lg" type="button">
+                        <button className="shadow btn-sub focus:shadow-outline focus:outline-none font-semibold text-lg" type="submit">
                             Sign Up
                         </button>
                     </div>

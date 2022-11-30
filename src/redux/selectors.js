@@ -1,13 +1,8 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-
 export const totalAmountSelector = (state) => state.cartHandle.totalAmount;
 
 export const totalPriceSelector = (state) => state.cartHandle.totalPrice;
-
-export const singleAmountSelector = (state) => state.singleItem.amount;
-
-export const statusItemSelector = (state) => state.singleItem.status;
 
 export const addedItemSelector = (state) => state.cartHandle.addedItem;
 
@@ -23,6 +18,6 @@ export const selectItemWithId = (state, id) => state.cartHandle.addedItem.filter
 
 export const selectItemTotal = (state) => state.cartHandle.addedItem.reduce((accumulator, currentValue) => accumulator + currentValue.price, 0)
 
-export const billPriceSelector = (state) => state.cartHandle.billPrice;
+export const isLoginedSelector = (state) => state.account.isLogined;
 
-export const orderTimeSelector = (state) => state.cartHandle.orderTime;
+export const accountInfoSelector = (state) => state.account.info;

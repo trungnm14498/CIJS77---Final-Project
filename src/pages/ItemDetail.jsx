@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 
 const ItemDetail = () => {
     const { itemId } = useParams();
-    console.log(itemId.length)
     const [itemDisplay, setItemDisplay] = useState("");
 
     const handleFetchMenu = () => {
@@ -14,8 +13,6 @@ const ItemDetail = () => {
             .get(`http://localhost:3000/api/menu/${itemId}`)
             .then(function (response) {
                 // setItemDisplay(response.data.filter((item) => item.id === parseInt(itemId)));
-
-                console.log(response.data);
                 setItemDisplay(response.data);
             })
             .catch(function (error) {

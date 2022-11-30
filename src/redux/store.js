@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import cartHandleSlice from './cartHandleSlice';
-import singleItemSlice from './singleItemSlice';
+import accountSlice from './accountSlice';
 
 const store = configureStore({
     reducer: {
         cartHandle: cartHandleSlice.reducer,
-        // singleItem: singleItemSlice.reducer,
+        account: accountSlice.reducer
     },
 });
 

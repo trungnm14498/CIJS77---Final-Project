@@ -10,14 +10,12 @@ import { useSelector } from 'react-redux';
 
 // import { MenuApi } from '../apiCollection';
 
-import { totalAmountSelector, totalPriceSelector, selectItemTotal, selectItem } from '../redux/selectors';
+import { selectItemTotal, selectItem } from '../redux/selectors';
 
 const MenuItems = () => {
     const { type } = useParams();
     const totalPrice = useSelector(selectItemTotal);
     const items = useSelector(selectItem);
-    // const totalAmountDisplay = useSelector(totalAmountSelector);
-    // const totalPriceDisplay = useSelector(totalPriceSelector);
     const [searchText, setSearchText] = useState("")
 
     const [itemList, setItemList] = useState([]);
@@ -27,13 +25,10 @@ const MenuItems = () => {
         setSearchText(e.target.value)
     }
 
-
     const handleFetchMenu = () => {
         axios
             .get("http://localhost:3000/api/categories")
             .then(function (response) {
-
-
                 setCategories(response.data)
             })
             .catch(function (error) {
@@ -42,9 +37,6 @@ const MenuItems = () => {
     };
 
     const displayItem = () => {
-        // const newItemList = menu.filter((menuItem) => menuItem.type === type);
-        // setItemList(newItemList);
-
         categories.length && axios
             .get(`http://localhost:3000/api/menu?categoryId=${categories.filter((c) => c.name === type)[0].id}`)
             .then(function (response) {

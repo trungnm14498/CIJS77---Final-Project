@@ -2,6 +2,16 @@ const jsonServer = require('json-server')
 const server = jsonServer.create()
 const router = jsonServer.router('db.json')
 const middlewares = jsonServer.defaults()
+require('dotenv').config();
+const stripe = require('stripe')(process.env.STRIPE_SECRET_TEST);
+const bodyParser = require('body-parser');
+const cors = require('cors');
+
+server.use(bodyParser.urlencoded({ extended: true }));
+server.use(bodyParser.json());
+
+server.use(cors());
+
 
 const fs = require("fs");
 const jwt = require("jsonwebtoken");
@@ -88,14 +98,6 @@ server.post('/histories', cors(), async (req, res) => {
 server.post("/register", (req, res) => {
     console.log(req.body)
 })
-
-
-
-
-
-
-
-
 
 
 

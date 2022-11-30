@@ -35,7 +35,7 @@ const Feedback = () => {
 
         axios({
             method: "POST",
-            url: "http://localhost:3000/api/feedback",
+            url: "http://localhost:3000/api/feedbacks",
             data: body
         })
             .catch(function (response) {
@@ -46,10 +46,9 @@ const Feedback = () => {
 
     const handleFetchReview = () => {
         axios
-            .get("http://localhost:3000/api/feedback")
+            .get("http://localhost:3000/api/feedbacks")
             .then(function (response) {
                 setReview(response.data.sort(() => 0.5 - Math.random()).slice(0, 3));
-                console.log(response.data)
             })
             .catch(function (error) {
                 console.log(error);
@@ -99,7 +98,6 @@ const Feedback = () => {
                             pagination={{ clickable: true }}
                         >
                             {reviews.map((review) => {
-                                console.log([...Array(review.rating).keys()]);
                                 return (
                                     <SwiperSlide key={review.id} className='flex flex-col justify-between'>
 

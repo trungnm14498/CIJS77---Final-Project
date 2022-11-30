@@ -1,13 +1,20 @@
 import { BiUser, BiPhone, BiHome, BiIdCard } from 'react-icons/bi';
 import { FaBirthdayCake } from 'react-icons/fa';
 import { BsGenderAmbiguous } from 'react-icons/bs';
+import { TfiEmail } from 'react-icons/tfi';
 import { Link } from 'react-router-dom';
 
-const UserInfo = () => {
+import { useSelector } from 'react-redux';
+import { accountInfoSelector } from '../redux/selectors';
+
+const Information = () => {
+
+    const accountInfo = useSelector(accountInfoSelector);
+
     return (
-        <section className="xl:max-w-[1280px] w-full mx-auto sm:px-10 px-20 flex flex-col sm:mt-40 mt-20 h-[67vh]">
+        <section className="xl:max-w-[1280px] w-full mx-auto sm:px-10 px-20 flex flex-col sm:mt-40 mt-20 h-[70vh]">
             <div className='w-fit'>
-                <h2 className='font-play sm:text-7xl ss:text-5xl text-3xl text-gradient uppercase inline-block'>U S E R &nbsp; I N F O.</h2>
+                <h2 className='font-play sm:text-7xl ss:text-5xl text-3xl text-gradient uppercase inline-block'>I N F O R M A T I O N.</h2>
                 <div className='h-[3px] bg-cf-gradient' />
             </div>
 
@@ -20,33 +27,37 @@ const UserInfo = () => {
                     <div className='flex flex-col gap-5 xs:w-[70%] xs:mb-0 mb-5'>
                         <div className='flex xs:gap-5 gap-2 items-center'>
                             <BiUser className='h-[30px] w-[30px] text-primary' />
-                            <div className='sm:text-xl xs:text-lg text-sm'>Nguyen Manh Trung</div>
+                            <div className='sm:text-xl xs:text-lg text-sm'>{accountInfo.name}</div>
                         </div>
                         <div className='flex xs:gap-5 gap-2 items-center'>
                             <FaBirthdayCake className='h-[30px] w-[30px] text-primary' />
-                            <div className='sm:text-xl xs:text-lg text-sm'>14/04/1998</div>
+                            <div className='sm:text-xl xs:text-lg text-sm'>{accountInfo.dob}</div>
                         </div>
                         <div className='flex xs:gap-5 gap-2 items-center'>
                             <BiPhone className='h-[30px] w-[30px] text-primary' />
-                            <div className='sm:text-xl xs:text-lg text-sm'>+84347890198</div>
+                            <div className='sm:text-xl xs:text-lg text-sm'>{accountInfo.phone}</div>
                         </div>
                         <div className='flex xs:gap-5 gap-2 items-center'>
                             <BiHome className='h-[30px] w-[30px] text-primary' />
-                            <div className='sm:text-xl xs:text-lg text-sm'>An Khanh, Hoai Duc, Ha Noi</div>
+                            <div className='sm:text-xl xs:text-lg text-sm'>{accountInfo.address}</div>
                         </div>
                     </div>
 
                     <div className='flex flex-col gap-5'>
                         <div className='flex xs:gap-5 gap-2 items-center'>
                             <BiIdCard className='h-[30px] w-[30px] text-primary' />
-                            <span className='sm:text-xl xs:text-lg text-sm'>trungnm14498</span>
+                            <span className='sm:text-xl xs:text-lg text-sm'>{accountInfo.username}</span>
                         </div>
                         <div className='flex xs:gap-5 gap-2 items-center'>
                             <BsGenderAmbiguous className='h-[30px] w-[30px] text-primary' />
-                            <span className='sm:text-xl xs:text-lg text-sm'>Male</span>
+                            <span className='sm:text-xl xs:text-lg text-sm capitalize'>{accountInfo.gender}</span>
+                        </div>
+                        <div className='flex xs:gap-5 gap-2 items-center'>
+                            <TfiEmail className='h-[25px] w-[25px] text-primary' />
+                            <span className='sm:text-xl xs:text-lg text-sm'>{accountInfo.email}</span>
                         </div>
 
-                        <Link to='/userInfo/update'>
+                        <Link to='/userUpdate'>
                             <button className='btn-sub'>Update Info</button>
                         </Link>
                     </div>
@@ -56,4 +67,4 @@ const UserInfo = () => {
     );
 };
 
-export default UserInfo;
+export default Information;

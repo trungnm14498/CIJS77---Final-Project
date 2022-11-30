@@ -100,3 +100,15 @@ Content-Type: application/json
     "feedback": "Donec quis dui leo. Praesent purus leo, vestibulum ut euismod quis, maximus faucibus velit. Orci."
 }
 
+###
+## @name getAccountInfo
+GET http://localhost:3000/api/accounts/
+
+###
+## @name updatePassword
+PATCH http://localhost:3000/api/accounts/2
+Content-Type: application/json
+
+{
+    "password": "10121998a"
+}
