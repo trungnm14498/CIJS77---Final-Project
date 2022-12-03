@@ -10,11 +10,13 @@ import Register from "./Register";
 import Information from "./Information";
 import UserUpdate from "./UserUpdate";
 import AdminDetailMenu from "./AdminDetailMenu";
-import AdminUpdateMenu from "./AdminUpdateMenu";
+import AdminMenu from "./AdminMenu";
 import AdminAddItem from "./AdminAddItem";
 import AdminFeedbacks from "./AdminFeedbacks";
 import AdminOrderHistories from "./AdminOrderHistories";
+import MainMenu from "./MainMenu";
+import PageNotFound from "./PageNotFound";
 
 export {
-    CartEmpty, CartItems, Home, ItemDetail, Login, MenuItems, Order, Payment, Register, Information, UserUpdate, AdminDetailMenu, AdminUpdateMenu, AdminAddItem, AdminFeedbacks, AdminOrderHistories
+    CartEmpty, CartItems, Home, ItemDetail, Login, MenuItems, Order, Payment, Register, Information, UserUpdate, AdminDetailMenu, AdminMenu, AdminAddItem, AdminFeedbacks, AdminOrderHistories, MainMenu, PageNotFound
 };

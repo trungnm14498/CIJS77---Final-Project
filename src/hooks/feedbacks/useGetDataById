@@ -1,0 +1,46 @@
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+
+const getData = (api, id) => {
+    return axios.get(`${api}/${id}`)
+}
+
+export const useGetDataById = (enabled = true, api, id) => {
+
+    const [data1, setData1] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [data2, setData2] = useState({
+        name: "",
+        price: 0,
+        image: "",
+        categoryId: 0,
+        detail: {
+            desc: "",
+            ingredients: "",
+            nutritions: {
+                kcal: 0,
+                fat: 0,
+                protein: 0,
+                carbs: 0,
+                fibre: 0
+            }
+        }
+    })
+
+    useEffect(() => {
+        getData(api, id)
+            .then(function (response) {
+                setData1(response.data);
+                setData2(response.data);
+            })
+            .catch((err) => {
+                setError(err);
+            })
+            .finally(() => {
+                setIsLoading(false);
+            });
+    }, [enabled])
+
+    return { data1, data2, isLoading, error, setData2 }
+};

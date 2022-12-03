@@ -21,3 +21,5 @@ export const selectItemTotal = (state) => state.cartHandle.addedItem.reduce((acc
 export const isLoginedSelector = (state) => state.account.isLogined;
 
 export const accountInfoSelector = (state) => state.account.info;
+
+export const getRoleSelector = (state) => state.account.info.role;

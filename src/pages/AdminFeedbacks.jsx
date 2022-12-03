@@ -1,32 +1,13 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
-import 'swiper/css';
-import 'swiper/css/pagination';
+// import 'swiper/css';
+// import 'swiper/css/pagination';
+import { useGetData } from "../hooks/feedbacks/useGetData";
+import { feedbackAPI } from "../hooks/";
+import { useDeleteItem } from "../hooks/feedbacks/useDeleteData";
 
 const AdminFeedbacks = () => {
 
-    const [feedbacks, setFeedbacks] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
-
-    const handleFeedbacksFetch = () => {
-        axios.get('http://localhost:3000/api/feedbacks')
-            .then(function (response) {
-                setFeedbacks(response.data);
-            })
-            .then(function () {
-                setIsLoading(true);
-            })
-    }
-
-    const handleDeleteFeedback = (e) => {
-        const feedbackId = e.target.name;
-        axios.delete(`http://localhost:3000/api/feedbacks/${feedbackId}`)
-        setFeedbacks(feedbacks.filter((feedback) => feedback.id !== parseInt(e.target.name)));
-    }
-
-    useEffect(() => {
-        handleFeedbacksFetch();
-    }, []);
+    const { data, isLoading } = useGetData(true, feedbackAPI);
 
     return (
         <section className="xl:max-w-[1280px] w-full mx-auto sm:px-10 px-20 flex flex-col sm:mt-40 mt-28" >
@@ -35,27 +16,25 @@ const AdminFeedbacks = () => {
                 <div className='h-[3px] bg-cf-gradient' />
             </div>
 
-            <div className="flex flex-col gap-5">
+            <div className="flex flex-wrap gap-5 justify-center">
                 {
-                    isLoading ?
-                        feedbacks.map(feedback => {
+                    !isLoading ?
+                        data.map(feedback => {
                             return (
-                                <div key={feedback.id} className="w-80% border-solid border-2 border-primary text-lg text-dimWhite rounded-md">
-                                    <div className="flex justify-between items-center gap-2 p-3">
+                                <div key={feedback.id} className="flex flex-col justify-between items-center w-[350px] min-h-[400px] border-solid border-2 border-primary text-lg text-dimWhite rounded-md">
+                                    <div className="flex flex-col justify-between items-center gap-2 p-3">
                                         <div className="flex flex-col gap-3 justify-center">
                                             <div>Feedback ID: <span className="font-semibold">{feedback.id}</span> </div>
                                             <div>Username: <span className="font-semibold">{feedback.username}</span></div>
                                             <div>Rating: <span className="font-semibold">{feedback.rating}</span></div>
                                             <div>Feedback:
-                                                <p className="italic text-xl border-l-4 border-solid pl-5 p-2 mt-3 font-semibold">"{feedback.feedback}"</p>
+                                                <p className="italic border-l-4 border-solid pl-5 p-2 mt-3 font-semibold">"{feedback.feedback}"</p>
                                             </div>
                                         </div>
-
-                                        <button name={feedback.id} className="btn-sub" onClick={handleDeleteFeedback}>
-                                            Delete
-                                        </button>
-
                                     </div>
+                                    <button name={feedback.id} className="btn-sub w-fit mb-3" onClick={(e) => { useDeleteItem(e, feedbackAPI, e.target.name, window.location.reload(false)) }}>
+                                        Delete
+                                    </button>
                                 </div>
                             )
                         }) : null

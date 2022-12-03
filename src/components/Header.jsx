@@ -16,44 +16,46 @@ const Header = () => {
     const isLogined = useSelector(isLoginedSelector);
     const accountInfo = useSelector(accountInfoSelector);
 
-    const handleIsLogined = () => {
-        isLogined ? dispatch(accountSlice.actions.setLogout()) : null
+    // const handleIsLogin = () => {
+    //     isLogined ? dispatch(accountSlice.actions.setLogout()) : null
+    // }
+    const handleIsLogout = () => {
+        dispatch(accountSlice.actions.setLogout(false))
+        dispatch(accountSlice.actions.setUserIn(""))
     }
 
     return (
         <header className=" bg-black fixed top-0 w-full shadow-2xl shadow-primary z-[5]">
             <div className="xl:max-w-[1280px] w-full mx-auto sm:px-10 px-5">
-                <div className="sm:grid grid-cols-12 items-center justify-items-center text-primary flex justify-between">
+                <div className="flex items-center justify-items-center text-primary flex justify-between">
                     <Link to='/'>
                         <img src={logo} alt="logo" className="h-[100px] w-[100px]" />
                     </Link>
                     {
-                        accountInfo.role === 'user' ? <ul className="hidden sm:flex justify-center list-none sm:text-2xl text-xl col-span-10 gap-14">
-                            <li><a href="/#menu" >Menu</a></li>
+                        (!isLogined || accountInfo.role === 'user') ? <ul className="hidden sm:flex justify-center list-none sm:text-2xl text-xl col-span-10 gap-14">
+                            {/* <li><a href="/menu/all" >Menu</a></li> <Link /> */}
+                            <li><Link to="/menu/all" >Menu</Link></li>
                             <li><a href="/#story">Our Story</a></li>
                             <li><a href="/#feedbacks">Feedbacks</a></li>
                             <li><a href="/#contact">Contact</a></li>
                         </ul> :
                             <ul className="hidden sm:flex justify-center list-none sm:text-2xl text-xl col-span-10 gap-14">
-                                <li><a href="/admin-menu" >Menu</a></li>
-                                <li><a href="/admin-feedback">Feedbacks</a></li>
-                                <li><a href="/admin-order-history">Order History</a></li>
+                                {/* <li><a href="/admin-menu" >Menu</a></li> */}
+                                <li><Link to="/admin-menu" >Menu</Link></li>
+
+                                <li><Link href="/admin-feedback">Feedbacks</Link></li>
+                                <li><Link href="/admin-order-history">Order History</Link></li>
                             </ul>
                     }
 
 
-                    <div className="flex sm:justify-center items-center sm:gap-10 gap-5">
+                    <div className="flex md:justify-start items-center gap-5">
                         {isLogined ?
                             <div className="text-lg">Welcome, <Link to='/information' className="hover:font-semibold transition-all">{accountInfo.username}</Link> </div> : null}
-                        <div className="flex flex-col items-center gap-1 sm:text-lg text[12px]">
-                            <button>VI</button>
-                            <div className="w-5 h-[1px] bg-primary" />
-                            <button>EN</button>
-                        </div>
                         {
-                            isLogined ? <Link to='/' className="sm:text-lg text[12px]" onClick={handleIsLogined}>Logout</Link>
+                            isLogined ? <Link to='/' className="sm:text-lg text[12px]" onClick={handleIsLogout}>Logout</Link>
                                 :
-                                <Link to='/login' className="sm:text-lg text[12px]" onClick={handleIsLogined}>Login</Link>
+                                <Link to='/login' className="sm:text-lg text[12px]" >Login</Link>
                         }
 
                         <div className="sm:hidden flex justify-center items-center" onClick={() => setToggle((prev) => !prev)}>
@@ -62,13 +64,20 @@ const Header = () => {
                     </div>
 
                     <nav className={`${toggle ? 'sm:flex' : 'hidden'} p-6 bg-black-gradient absolute top-40 right-0 min-w-[140px] rounded-xl sidebar`} >
-                        <ul className="list-none flex flex-col justify-end items-center flex-1 gap-5">
-                            <li><a href="./#menu" >Menu</a></li>
-                            <li><a href="./#story" >Our Story</a></li>
-                            <li><a href="./#feedbacks" >Feedbacks</a></li>
-                            <li><a href="./#contact" >Contact</a></li>
-                            <li><Link to='/cart' onClick={() => setToggle((prev) => !prev)}>Cart 0</Link></li>
-                        </ul>
+                        {
+                            (!isLogined || accountInfo.role === 'user') ? <ul className="list-none flex flex-col justify-end items-center flex-1 gap-5">
+                                <li><Link to="/menu/all" >Menu</Link></li>
+                                <li><a href="/#story">Our Story</a></li>
+                                <li><a href="/#feedbacks">Feedbacks</a></li>
+                                <li><a href="/#contact">Contact</a></li>
+                            </ul> :
+                                <ul className="list-none flex flex-col justify-end items-center flex-1 gap-5">
+                                    <li><Link to="/admin-menu" >Menu</Link></li>
+
+                                    <li><Link href="/admin-feedback">Feedbacks</Link></li>
+                                    <li><Link href="/admin-order-history">Order History</Link></li>
+                                </ul>
+                        }
                     </nav>
                 </div>
             </div>

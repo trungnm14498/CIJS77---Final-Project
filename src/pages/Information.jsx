@@ -3,13 +3,29 @@ import { FaBirthdayCake } from 'react-icons/fa';
 import { BsGenderAmbiguous } from 'react-icons/bs';
 import { TfiEmail } from 'react-icons/tfi';
 import { Link } from 'react-router-dom';
-
+import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import { accountInfoSelector } from '../redux/selectors';
+import axios from 'axios';
 
 const Information = () => {
-
-    const accountInfo = useSelector(accountInfoSelector);
+    const accountInformation = useSelector(accountInfoSelector);
+    const [accountInfo, setAccountInfo] = useState();
+    const [isLoading, setIsLoading] = useState(false);
+    const handleFetch = () => {
+        axios
+            .get(`http://localhost:3000/api/accounts/${accountInformation.id}`)
+            .then(function (response) {
+                setAccountInfo(response.data);
+                setIsLoading(true)
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+    useEffect(() => {
+        handleFetch();
+    }, []);
 
     return (
         <section className="xl:max-w-[1280px] w-full mx-auto sm:px-10 px-20 flex flex-col sm:mt-40 mt-20 h-[70vh]">
@@ -23,7 +39,7 @@ const Information = () => {
                     User Information
                 </div>
 
-                <div className='flex xs:flex-row flex-col xs:items-center mt-10'>
+                {isLoading && <div className='flex xs:flex-row flex-col xs:items-center mt-10'>
                     <div className='flex flex-col gap-5 xs:w-[70%] xs:mb-0 mb-5'>
                         <div className='flex xs:gap-5 gap-2 items-center'>
                             <BiUser className='h-[30px] w-[30px] text-primary' />
@@ -31,7 +47,7 @@ const Information = () => {
                         </div>
                         <div className='flex xs:gap-5 gap-2 items-center'>
                             <FaBirthdayCake className='h-[30px] w-[30px] text-primary' />
-                            <div className='sm:text-xl xs:text-lg text-sm'>{accountInfo.dob}</div>
+                            <div className='sm:text-xl xs:text-lg text-sm'>{accountInfo.birthday}</div>
                         </div>
                         <div className='flex xs:gap-5 gap-2 items-center'>
                             <BiPhone className='h-[30px] w-[30px] text-primary' />
@@ -61,7 +77,7 @@ const Information = () => {
                             <button className='btn-sub'>Update Info</button>
                         </Link>
                     </div>
-                </div>
+                </div>}
             </div>
         </section>
     );

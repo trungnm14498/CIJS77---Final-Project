@@ -1,13 +1,13 @@
-import axios from 'axios';
 import ItemInCart from "../components/ItemInCart";
 import { useSelector } from 'react-redux';
-import { cartedItemsSelector, selectItemTotal, selectItem } from '../redux/selectors';
+import { selectItemTotal, selectItem, isLoginedSelector } from '../redux/selectors';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+
 const CartItems = () => {
-    // const addedItem = useSelector(cartedItemsSelector);
-    // const dispatch = useDispatch();
+    const isLogined = useSelector(isLoginedSelector)
+
     const [groupItemsInCart, setGroupItemInCart] = useState([])
     const items = useSelector(selectItem);
     const totalPrice = useSelector(selectItemTotal);
@@ -19,38 +19,6 @@ const CartItems = () => {
         }, {});
         setGroupItemInCart(groupItems)
     }, [items])
-
-    // const totalPriceDisplay = useSelector(totalPriceSelector);
-
-    // const handleFetchMenu = () => {
-    //     axios
-    //         .get(MenuApi)
-    //         .then(function (response) {
-    //             const itemList = response.data.reduce((pre, current) => {
-    //                 return {
-    //                     ...pre,
-    //                     [current.id]: current,
-    //                 };
-    //             }, {});
-    //             const newArray = addedItem.map(item => {
-    //                 return {
-    //                     ...item,
-    //                     name: itemList[item.id].name,
-    //                     price: itemList[item.id].price,
-    //                     image: itemList[item.id].image,
-    //                 }
-    //             });
-    //             setItemDisplay(newArray);
-    //         }
-    //         )
-    //         .catch(function (error) {
-    //             console.log(error);
-    //         });
-    // };
-
-    // useEffect(() => {
-    //     handleFetchMenu();
-    // }, []);
 
     return (
         <section className="xl:max-w-[1400px] w-full mx-auto sm:px-10 px-20 flex flex-col sm:mt-40 mt-28">
@@ -67,11 +35,12 @@ const CartItems = () => {
                             <ItemInCart key={item[0].id + 1} id={item[0].id} name={item[0].name} price={item[0].price} image={item[0].image} amount={item.length} items={items} />)
                     }
                 </div>
-                <div className='mx-auto mt-20'>
-                    <Link to='/menu/starter' className="btn-sub sm:text-2xl text-lg sm:mb-2 w-fit mr-10">Back To Menu</Link>
-                    <Link to='/order' className="btn-sub sm:text-2xl text-lg sm:mb-2 w-fit">Go to Checkout</Link>
-                </div>
+                <div className='mx-auto mt-20 flex xs:flex-row flex-col gap-2 justify-center items-center'>
+                    <Link to='/menu/starter' className="btn-sub sm:text-xl text-lg sm:mb-2 w-fit xs:mr-10 mr-0">Back To Menu</Link>
+                    <Link to='/order' className="btn-main sm:text-xl text-lg sm:mb-2 w-fit">Go to Checkout</Link>
 
+                </div>
+                {!isLogined && <p style={{ color: "red", margin: "0 auto" }}>Please log in to check out</p>}
             </div>
         </section>
     );

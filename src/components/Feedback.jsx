@@ -1,13 +1,13 @@
-import userAvatar1 from '../assets/avatar/u001.png';
-import { FaStar } from 'react-icons/fa';
 import axios from 'axios';
-
-import { useState, useEffect } from 'react';
+import userAvatar1 from '../assets/avatar/u002.png';
+import { FaStar } from 'react-icons/fa';
+import { useState } from 'react';
+import { useGetData } from '../hooks/feedbacks/useGetData';
 
 // import Swiper core and required modules
 import { Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
+import { feedbackAPI } from '../hooks/';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -16,53 +16,31 @@ const Feedback = () => {
 
     const [rating, setRating] = useState(0);
     const [feedback, setFeedback] = useState('');
-    const [reviews, setReview] = useState([]);
+
+    const { randomData } = useGetData(true, feedbackAPI);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // const testData = new FormData();
-        // testData.append('username', 'trungnm14498');
-        // testData.append('rating', rating);
-        // testData.append('feedback', feedback);
-        // testData.append('avatar', '');
-
         const body = {
             username: 'phamvietanh',
             rating: rating,
             'feedback': feedback,
             'avatar': ''
         }
-
         axios({
             method: "POST",
             url: "http://localhost:3000/api/feedbacks",
             data: body
         })
             .catch(function (response) {
-                //handle error
                 console.log(response);
             });
     }
 
-    const handleFetchReview = () => {
-        axios
-            .get("http://localhost:3000/api/feedbacks")
-            .then(function (response) {
-                setReview(response.data.sort(() => 0.5 - Math.random()).slice(0, 3));
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    }
-
-    useEffect(() => {
-        handleFetchReview();
-    }, [])
-
     return (
         <>
             <span id='feedbacks'></span>
-            <section className="xl:max-w-[1280px] w-full mx-auto sm:px-10 px-20 flex flex-col sm:mt-40 mt-28 h-[70vh]">
+            <section className="xl:max-w-[1280px] w-full mx-auto sm:px-10 px-20 flex flex-col sm:mt-40 mt-28">
                 <div className='w-fit xs:mb-5'>
                     <h2 className='font-play sm:text-7xl ss:text-5xl text-3xl text-gradient uppercase inline-block'>F E E D B A C K S.</h2>
                     <div className='h-[3px] bg-cf-gradient' />
@@ -91,16 +69,15 @@ const Feedback = () => {
 
                     <div className="flex flex-col items-center sm:col-span-3 col-span-2 text-dimWhite sm:mt-0 mt-10">
                         <span className='ss:text-2xl text-base text-center mb-2'>Let our customers talk about us</span>
-                        <Swiper className="p-5 w-full h-[430px] bg-transparent border-2 border-primary border-solid rounded-xl leading-[30px]"
+                        <Swiper className="p-5 w-full sm:h-[430px] bg-transparent border-2 border-primary border-solid rounded-xl leading-[30px]"
                             modules={[Pagination]}
                             spaceBetween={50}
                             slidesPerView={1}
                             pagination={{ clickable: true }}
                         >
-                            {reviews.map((review) => {
+                            {randomData.map((review) => {
                                 return (
                                     <SwiperSlide key={review.id} className='flex flex-col justify-between'>
-
                                         <div className='flex flex-col sm:gap-5 gap-1 justify-center items-center'>
                                             <div className='rounded-full'>
                                                 <img src={userAvatar1} alt="userAvatar1" className='sm:w-[100px] w-[70px]' />
@@ -112,55 +89,10 @@ const Feedback = () => {
                                         <div className='flex justify-center items-center sm:gap-2 mb-8'>
                                             {[...Array(review.rating).keys()].map((star) => <FaStar key={star} className='sm:text-3xl text-xl text-center text-[#ffd600]' />
                                             )}
-
-                                            {/* <FaStar className='sm:text-3xl text-xl text-center text-[#ffd600]' />
-                                            <FaStar className='sm:text-3xl text-xl text-center text-[#ffd600]' />
-                                            <FaStar className='sm:text-3xl text-xl text-center text-[#ffd600]' />
-                                            <FaStar className='sm:text-3xl text-xl text-center text-[#ffd600]' /> */}
                                         </div>
                                     </SwiperSlide>
                                 )
                             })}
-
-
-                            {/* <SwiperSlide className='flex flex-col justify-between'>
-                                <div className='flex flex-col sm:gap-5 gap-1 justify-center items-center'>
-                                    <div className='rounded-full'>
-                                        <img src={userAvatar1} alt="userAvatar1" className='sm:w-[100px] w-[70px]' />
-                                    </div>
-                                    <span className='sm:text-xl text-base'>User 1</span>
-                                </div>
-                                <p className='xs:text-[18px] md:text-xl text-[10px] xs:leading-6 leading-5 text-primary'>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, eveniet velit. Odio deserunt, quos sequi sint itaque perferendis. Illo veniam est natus libero maiores eaque? Soluta cupiditate dicta quis minima.
-                                </p>
-                                <div className='flex justify-center items-center sm:gap-2 mb-8'>
-                                    <FaStar className='sm:text-3xl text-xl text-center text-[#ffd600]' />
-                                    <FaStar className='sm:text-3xl text-xl text-center text-[#ffd600]' />
-                                    <FaStar className='sm:text-3xl text-xl text-center text-[#ffd600]' />
-                                    <FaStar className='sm:text-3xl text-xl text-center text-[#ffd600]' />
-                                    <FaStar className='sm:text-3xl text-xl text-center text-[#ffd600]' />
-                                </div>
-                            </SwiperSlide>
-                            <SwiperSlide SwiperSlide className='flex flex-col justify-between'>
-
-
-                                <div className='flex flex-col sm:gap-5 gap-1 justify-center items-center'>
-                                    <div className='rounded-full'>
-                                        <img src={userAvatar1} alt="userAvatar1" className='sm:w-[100px] w-[70px]' />
-                                    </div>
-                                    <span className='sm:text-xl text-base'>{review.username}</span>
-                                </div>
-                                <p className='xs:text-[18px] md:text-xl text-[10px] xs:leading-6 leading-5 text-primary'>
-                                    {review.feedback}                                    </p>
-                                <div className='flex justify-center items-center sm:gap-2 mb-8'>
-                                    <FaStar className='sm:text-3xl text-xl text-center text-[#ffd600]' />
-                                    <FaStar className='sm:text-3xl text-xl text-center text-[#ffd600]' />
-                                    <FaStar className='sm:text-3xl text-xl text-center text-[#ffd600]' />
-                                    <FaStar className='sm:text-3xl text-xl text-center text-[#ffd600]' />
-                                    <FaStar className='sm:text-3xl text-xl text-center text-[#ffd600]' />
-                                </div>
-                            </SwiperSlide> */}
-
                         </Swiper>
                     </div>
                 </div>

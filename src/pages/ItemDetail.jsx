@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { menuItemById } from '../apiCollection';
 import { Link } from 'react-router-dom';
 
 const ItemDetail = () => {
@@ -12,7 +11,6 @@ const ItemDetail = () => {
         axios
             .get(`http://localhost:3000/api/menu/${itemId}`)
             .then(function (response) {
-                // setItemDisplay(response.data.filter((item) => item.id === parseInt(itemId)));
                 setItemDisplay(response.data);
             })
             .catch(function (error) {

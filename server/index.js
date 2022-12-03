@@ -7,6 +7,10 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_TEST);
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+const { uuid } = require('uuidv4');
+
+
+
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());
 
@@ -53,6 +57,8 @@ server.get('/echo', (req, res) => {
 // To handle POST, PUT and PATCH you need to use a body-parser
 // You can use the one used by JSON Server
 server.use(jsonServer.bodyParser)
+
+
 server.use((req, res, next) => {
     if (req.method === 'POST') {
         req.body.createdAt = Date.now();
@@ -66,7 +72,7 @@ server.use((req, res, next) => {
 })
 
 //console.log(JSON.parse(fs.readFileSync("./db.json", "utf8")).accounts)
-server.use("/api", router);
+
 
 server.post('/histories', cors(), async (req, res) => {
     let { amount, time, method, username, name, phone } = req.body;
@@ -95,13 +101,86 @@ server.post('/histories', cors(), async (req, res) => {
     }
 })
 
-server.post("/register", (req, res) => {
-    console.log(req.body)
-})
+
+server.post("/api/login", async (req, res) => {
+    try {
+        const { username, password } = req.body;
+
+        const status = 401;
+        const message = "Incorrect username or password";
+
+        const rawData = fs.readFileSync("./db.json", "utf8");
+        const accounts = JSON.parse(rawData).accounts || [];
+        const user = accounts.find((item) => item.username === username);
 
 
+        if (!user) {
+            res.status(status).json({ status, message });
+            return;
+        }
+
+        const validPassword = await bcrypt.compare(password, user.password);
 
 
+        if (validPassword) {
+
+            const accessToken = jwt.sign({ username }, SECRET_KEY, {
+                expiresIn: EXPIRES_IN,
+            });
+
+            res
+                .status(200)
+                .json({ accessToken, expiresIn: EXPIRES_IN, tokenType: TOKEN_TYPE, userData: { username: user.username, role: user.role, id: user.id } });
+        }
+        else {
+
+            res.status(status).json({ status, message });
+        }
+    } catch (error) {
+        console.log("error ", error);
+        res.status(500).json({ error: "Server Error" });
+    }
+});
+
+
+server.post("/api/register", async (req, res) => {
+    try {
+        const user = req.body;
+
+        if (!(user.username && user.password)) {
+            return res.status(400);
+        }
+
+        const rawData = fs.readFileSync("./db.json", "utf8");
+        const database = JSON.parse(rawData);
+
+        const isExisting = database.accounts.some((item) => item.username === user.username);
+
+        if (isExisting) {
+            return res
+                .status(400)
+                .send({ error: `Username ${user.username} already exist` });
+        }
+
+        const salt = await bcrypt.genSalt(10);
+        user.password = await bcrypt.hash(user.password, salt);
+        user.id = uuid();
+        user.role = "user";
+        user.name = "";
+        user.dob = "";
+        user.phone = "";
+        user.email = "";
+        user.gender = "";
+        user.address = "";
+        database.accounts.push(user);
+
+        fs.writeFileSync("./db.json", JSON.stringify(database, null, 2));
+
+        res.status(200).json({ message: "created" });
+    } catch (err) {
+        res.status(500).json({ error: "Server Error" });
+    }
+});
 
 
 // Use default router
