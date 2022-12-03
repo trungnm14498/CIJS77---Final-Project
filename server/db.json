@@ -1,4 +1,7 @@
 {
+  "changepass": [],
+  "login": [],
+  "register": [],
   "categories": [
     {
       "id": 1,
@@ -572,6 +575,27 @@
           "fibre": 1
         }
       }
+    },
+    {
+      "name": "Banh Ran",
+      "price": 12.4,
+      "image": "https://i0.wp.com/cachlam.info/wp-content/uploads/2021/12/cong-thuc-banh-ran-doremon-dorayaki-1.jpg?fit=1020%2C574&ssl=1",
+      "categoryId": 1,
+      "detail": {
+        "desc": "",
+        "ingredients": "",
+        "nutritions": {
+          "kcal": 0,
+          "fat": 0,
+          "protein": 0,
+          "carbs": 0,
+          "fibre": 0
+        }
+      },
+      "category": "5",
+      "createdAt": 1670004182171,
+      "updatedAt": 1670004182171,
+      "id": 31
     }
   ],
   "accounts": [
@@ -580,55 +604,30 @@
       "role": "admin",
       "email": "pva98@gmail.com",
       "username": "pva98",
-      "password": "10121998a",
+      "password": "$2b$10$kdJLg/vNKH2DPmALy/j5z.b7OA/Vzu9i9Q2rCDTukACQyQCunbo7W",
       "name": "Pham Viet Anh",
       "gender": "male",
-      "birthday": "10/12/1998",
+      "birthday": "1998-12-10",
       "phone": "+84398408275",
       "address": "Tay Mo, Nam Tu Liem, Ha Noi",
       "avatar": "",
-      "updatedAt": 1669635831308
+      "updatedAt": 1670023632553,
+      "data": "sadf@gmail.com"
     },
     {
       "id": "2",
       "role": "admin",
-      "email": "trungnm.14498@gmail.com",
-      "username": "trungnm.14498",
-      "password": "0433505086.tT",
-      "name": "Nguyen Manh Trung",
+      "email": "itmo@itmo.ru",
+      "username": "newUserName123",
+      "password": "123abc.A",
+      "name": "Kiritsu",
       "gender": "male",
-      "birthday": "14/04/1998",
-      "phone": "+84347890198",
-      "address": "An Khanh, Hoai Duc, Ha Noi",
+      "birthday": "2022-01-02",
+      "phone": "89999999999",
+      "address": "Saint",
       "avatar": "",
-      "updatedAt": 1669744975939
-    },
-    {
-      "id": "3",
-      "role": "user",
-      "email": "user1@gmail.com",
-      "username": "user1",
-      "password": "user123456",
-      "name": "Nem Nuong Nha Trang",
-      "gender": "male",
-      "birthday": "17/11/2000",
-      "phone": "+84123456789",
-      "address": "Hoan Kiem, Ba Dinh, Ha Noi",
-      "avatar": "",
-      "updatedAt": 1669741844179,
-      "price": 7,
-      "categoryId": 1,
-      "detail": {
-        "desc": "",
-        "ingredients": "",
-        "nutritions": {
-          "kcal": 351,
-          "fat": 20,
-          "protein": 0,
-          "carbs": 9,
-          "fibre": 2
-        }
-      }
+      "updatedAt": 1669941519563,
+      "dob": "2012-08-14"
     },
     {
       "id": "4",
@@ -681,6 +680,33 @@
       "phone": "+84123896289",
       "address": "Sed bibendum, Sit Amet, Placeratis",
       "avatar": ""
+    },
+    {
+      "username": "test123",
+      "password": "$2b$10$.YUO5/D3Y/QWwDJoXkVwoeTN7wNv7pzyeoMbYYPyJVi4s73Uo9gli",
+      "id": "af4350bf-4aa0-4343-b195-b6e1beff53e5",
+      "createdAt": 1669932084330,
+      "updatedAt": 1669943698535,
+      "role": "user",
+      "name": "Kiritsi",
+      "gender": "male",
+      "phone": "89999999999",
+      "email": "international@itmo.ru"
+    },
+    {
+      "username": "test12345",
+      "password": "$2b$10$NylKdv.HzawAGF9y4MKig.LuQFBk9PvRDRRLU74/QlRMqMwA5rqhS",
+      "id": "0e4bf990-1f40-400a-adbe-1e212482c677",
+      "name": "Marco Reus",
+      "dob": "2021-11-11",
+      "phone": "0988888888",
+      "email": "international@itmo.ru",
+      "gender": "male",
+      "address": "Hanoi",
+      "createdAt": 1669940026281,
+      "updatedAt": 1669946450620,
+      "role": "user",
+      "birthday": "2022-01-01"
     }
   ],
   "histories": [
@@ -690,7 +716,7 @@
       "name": "Nguyen Van A",
       "phone": "+84123456789",
       "address": "Hoan Kiem, Ba Dinh, Ha Noi",
-      "time": "22:03:47 Thu Nov 17 2022",
+      "time": "22:03:47 Thu Oct 17 2021",
       "amount": 276,
       "note": "Duis pulvinar elementum purus, sit amet malesuada ligula hendrerit at. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices."
     },
@@ -700,7 +726,7 @@
       "name": "Nguyen Van B",
       "phone": "+84123215289",
       "address": "Xuan Thuy, Cau Giay, Ha Noi",
-      "time": "23:10:25 Wed Nov 30 2022",
+      "time": "23:10:25 Wed Nov 11 2021",
       "amount": 310,
       "note": "Sed nunc nunc, tincidunt ac pretium at, auctor a magna. Vivamus massa tortor, finibus at condimentum eu, dictum in odio.",
       "createdAt": 1669781429783,
@@ -847,6 +873,66 @@
       "createdAt": 1669816194821,
       "updatedAt": 1669816194821,
       "id": 16
+    },
+    {
+      "amount": 123.5,
+      "time": "21:42:24 Thursday, 30-11-2022",
+      "username": "terew1315",
+      "name": "Tran Van D",
+      "phone": "+79967978868",
+      "address": "An Khanh, Hoai Duc, Ha Noi",
+      "note": "Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce in feugiat metus, et volutpat lectus. Aenean a arcu.",
+      "createdAt": 1669839014919,
+      "updatedAt": 1669839014919,
+      "id": 17
+    },
+    {
+      "amount": 49.2,
+      "time": "21:42:24 Thursday, 14-11-2022",
+      "username": "qwer1315",
+      "name": "Tran Hoang G",
+      "phone": "+79912478518",
+      "address": "Gia Lam, Ha Noi",
+      "note": "Kuresa kekjoe namutein karise louew numeng kisuarewg arcu.",
+      "createdAt": 1669882851043,
+      "updatedAt": 1669882851043,
+      "id": 18
+    },
+    {
+      "amount": 35.48,
+      "time": "22:46:25 Friday, 1-12-2022",
+      "username": "",
+      "name": "Doan Ngoc Hoang Anh",
+      "phone": "09821824821",
+      "address": "Ngoc Hoi, Dong Da, Ha Noi",
+      "note": "Cam phien cac ban shipper dem",
+      "createdAt": 1669924072228,
+      "updatedAt": 1669924072228,
+      "id": 19
+    },
+    {
+      "amount": 19.25,
+      "time": "22:52:3 Friday, 1-12-2022",
+      "username": "",
+      "name": "Admin test",
+      "phone": "09121928512",
+      "address": "Lach Tray, Hai Phong",
+      "note": "Hello, test service!",
+      "createdAt": 1669924379524,
+      "updatedAt": 1669924379524,
+      "id": 20
+    },
+    {
+      "amount": 163.35,
+      "time": "22:53:34 Friday, 1-12-2022",
+      "username": "",
+      "name": "Нгуен Мань Чунг",
+      "phone": "+79967978868",
+      "address": "Tay Mo, Nam Tu Liem, Ha Noi",
+      "note": "asdfawer",
+      "createdAt": 1669924450637,
+      "updatedAt": 1669924450637,
+      "id": 21
     }
   ],
   "feedbacks": [
@@ -887,32 +973,6 @@
       "createdAt": 1669577900104,
       "updatedAt": 1669577900104,
       "id": 8
-    },
-    {
-      "username": "trungnm14498",
-      "rating": 4,
-      "feedback": "Hello",
-      "createdAt": 1669579775451,
-      "updatedAt": 1669579775451,
-      "id": 9
-    },
-    {
-      "username": "phamvietanh",
-      "rating": 5,
-      "feedback": "Hello! Testing feedback from admin!",
-      "avatar": "",
-      "createdAt": 1669751983731,
-      "updatedAt": 1669751983731,
-      "id": 10
-    },
-    {
-      "username": "phamvietanh",
-      "rating": 4,
-      "feedback": "Test feedback",
-      "avatar": "",
-      "createdAt": 1669812695589,
-      "updatedAt": 1669812695589,
-      "id": 11
     }
   ]
 }

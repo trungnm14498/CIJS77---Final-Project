@@ -13,8 +13,6 @@ const PUBLIC_KEY = "pk_test_51M9iHxFBSEeFbPeSNkMYKPHttryM0cLdB41zNoIp0D6Wvx1wM6m
 const stripeTestPromise = loadStripe(PUBLIC_KEY);
 
 const Order = () => {
-    const dispatch = useDispatch();
-
     const [groupItemsInCart, setGroupItemInCart] = useState([])
 
     const items = useSelector(selectItem);
@@ -23,7 +21,6 @@ const Order = () => {
     const taxPrice = parseFloat((totalPrice * 0.1).toFixed(2));
     const billPrice = totalPrice + taxPrice;
 
-    // For the time now
     const currentdate = new Date();
     const orderTime = currentdate.getHours() + ":"
         + currentdate.getMinutes() + ":"

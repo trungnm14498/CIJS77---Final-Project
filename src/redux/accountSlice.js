@@ -3,25 +3,19 @@ import { createSlice } from "@reduxjs/toolkit";
 export default createSlice({
     name: "account",
     initialState: {
-        isLogined: true,
+        isLogined: false,
         info: {
-            role: "user",
-            username: "trungnm14498",
-            name: "Nguyen Manh Trung",
-            dob: "14/04/1998",
-            phone: "+79967978868",
-            email: "trungnm14498@gmail.com",
-            gender: "male",
-            address: "An Khanh, Hoai Duc, Ha Noi",
-            password: "14041998"
         }
     },
     reducers: {
-        setLogout(state) {
-            state.isLogined = false;
+        setLogout: (state, action) => {
+            state.isLogined = action.payload;
         },
-        setLogin(state) {
-            state.isLogined = true;
+        setLogin: (state, action) => {
+            state.isLogined = action.payload;
+        },
+        setUserIn: (state, action) => {
+            state.info = action.payload;
         }
     }
 })

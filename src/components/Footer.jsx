@@ -6,7 +6,7 @@ import { weekdays, openingHours } from '.';
 
 const Footer = () => {
     return (
-        <footer className="border-t-2 border-dimWhite border-solid mt-40 rounded-tr-xl rounded-tl-xl bg-[url('./src/assets/image/footer.jpg')] bg-contain relative sm:h-[350px] w-full">
+        <footer className="border-t-2 border-dimWhite border-solid mt-40 rounded-tr-xl rounded-tl-xl bg-[url('https://images.unsplash.com/photo-1588416820614-f8d6ac6cea56?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80')] bg-contain relative sm:h-[350px] w-full">
             <div className='bg-black/75 absolute w-full h-full'>
                 <div className="xl:max-w-[1280px] w-full mx-auto sm:px-15 px-5">
                     <div className="xs:grid grid-cols-10 xs:gap-12 gap-7 items-center justify-center mt-8 flex flex-col">
