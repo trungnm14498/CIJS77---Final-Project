@@ -1,19 +1,22 @@
 import { BiUser, BiPhone, BiHome, BiIdCard } from 'react-icons/bi';
+
 import { FaBirthdayCake } from 'react-icons/fa';
-import { BsGenderAmbiguous, BsCheckCircle } from 'react-icons/bs';
+import { BsGenderAmbiguous, BsCheckCircle, BsXCircle } from 'react-icons/bs';
 import { AiOutlineCloseCircle } from 'react-icons/ai'
 import axios from 'axios';
 import validator from 'validator';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { accountInfoSelector } from '../redux/selectors';
 import { useSelector } from 'react-redux';
 import { accountsAPI } from '../hooks';
-
 const UserInfo = () => {
 
     const accountInfo = useSelector(accountInfoSelector);
     const [errorMessage, setErrorMessage] = useState('');
     const [newPassword, setNewPassword] = useState('');
+    const [currPassword, setCurrPassword] = useState("");
+    const [newConfirmPassword, setNewConfirmPassword] = useState('');
+
 
     const [status, setStatus] = useState({
         isFilled: false,
@@ -56,6 +59,7 @@ const UserInfo = () => {
     }
 
     const validateConfirmPassword = (e) => {
+        setNewConfirmPassword(e.target.value)
         if (e.target.value !== '') {
             setStatus((prev) => { return { ...prev, isFilled2: true } });
         } else {
@@ -69,24 +73,63 @@ const UserInfo = () => {
     }
 
     const validateCurrentPassword = (e) => {
-        if (e.target.value === accountInfo.password) {
-            setStatus((prev) => { return { ...prev, currPass: true } });
-        } else {
-            setStatus((prev) => { return { ...prev, currPass: false } });
-        }
+        setCurrPassword(e.target.value)
     }
+
+    // const handleSubmitPasswordChange = (e) => {
+    //     e.preventDefault();
+    //     const validPassword = bcrypt.compare(currPassword, userHashPassword).then(function (result) {
+    //         return result
+    //     });
+    //     if (validPassword) {
+    //         setStatus((prev) => { return { ...prev, currPass: true } });
+    //     } else {
+    //         setStatus((prev) => { return { ...prev, currPass: false } });
+    //     }
+    //     if (status.isMatched && status.currPass) {
+    //         const newHashPassword = bcrypt.hash(newPassword, 10, function (err, hash) {
+    //             return hash
+    //         });
+    //         axios.patch(`${accountsAPI}/${accountInfo.id}`, { "password": newHashPassword })
+    //             .then(function () {
+    //                 setStatus((prev) => { return { ...prev, passwordSuccess: true } });
+    //             })
+    //             .catch((error) => {
+    //                 console.log(error)
+    //             })
+    //     }
+    // }
 
     const handleSubmitPasswordChange = (e) => {
         e.preventDefault();
-        if (status.isMatched && status.currPass) {
-            axios.patch(`${accountsAPI}/2`, { "password": newPassword })
-                .then(function () {
-                    setStatus((prev) => { return { ...prev, passwordSuccess: true } });
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
+        const body = { currPassword: currPassword, newPassword: newPassword, id: accountInfo.id }
+        if (status.isMatched && (newPassword === newConfirmPassword)) {
+            axios({
+                method: "POST",
+                url: "http://localhost:3000/api/changepass",
+                data: body
+            }).then(() => {
+
+                setStatus((prev) => { return { ...prev, passwordSuccess: true, currPass: true } });
+                setTimeout(() => {
+                    setStatus((prev) => { return { ...prev, passwordSuccess: false } });;
+                }, 3000);
+
+            })
+                .catch(function () {
+                    //handle error
+
+
+
+
+                    setStatus((prev) => { return { ...prev, passwordSuccess: true, currPass: false } });
+                    setTimeout(() => {
+                        setStatus((prev) => { return { ...prev, passwordSuccess: false } });;
+                    }, 3000);
+                });
         }
+
+
     }
 
     const messNewDob = 'Do you remember your birthday?';
@@ -115,6 +158,9 @@ const UserInfo = () => {
         } else {
             setErrorMessage(message);
             setStatus((prev) => { return { ...prev, showMess: true } });
+            setTimeout(() => {
+                setStatus((prev) => { return { ...prev, showMess: false } });;
+            }, 3000);
         }
         if (newValue === '') {
             setStatus((prev) => { return { ...prev, showMess: false } });
@@ -125,15 +171,20 @@ const UserInfo = () => {
         const key = e.target.name;
         setNewInfo((prev) => { return { ...prev, [key]: e.target.value } });
     }
-
+    console.log(newInfo)
     const handleSubmitInfoChange = (e) => {
         e.preventDefault();
         Object.keys(newInfo).map((key) => {
             if (newInfo[key] !== '') {
+                console.log(newInfo)
                 axios.patch(`${accountsAPI}/${accountInfo.id}`, {
                     [key]: newInfo[key]
                 }).then(function () {
                     setStatus((prev) => { return { ...prev, infoSuccess: true } });
+                    setTimeout(() => {
+                        setStatus((prev) => { return { ...prev, infoSuccess: false } });;
+                    }, 3000);
+
                 })
                     .catch((error) => {
                         console.log(error)
@@ -164,7 +215,7 @@ const UserInfo = () => {
                             </div>
                             <div className='flex flex-col xs:flex-row xs:gap-5 gap-2 items-center'>
                                 <label htmlFor="newBirthday"><FaBirthdayCake className='h-[30px] w-[30px] text-dimWhite' /></label>
-                                <input id="newBirthday" name="newBirthday" type='text' placeholder='YY-MM-DD' className='sm:text-xl xs:text-lg text-sm bg-transparent border border-solid border-primary py-2 md:px-4 p-2 rounded-lg w-full' onChange={(e) => handleNewData(e, messNewDob, 'birthday')} />
+                                <input id="newBirthday" name="newBirthday" type='text' placeholder='YYYY-MM-DD' className='sm:text-xl xs:text-lg text-sm bg-transparent border border-solid border-primary py-2 md:px-4 p-2 rounded-lg w-full' onChange={(e) => handleNewData(e, messNewDob, 'birthday')} />
                             </div>
                             <div className='flex flex-col xs:flex-row xs:gap-5 gap-2 items-center'>
                                 <label htmlFor="newPhone"><BiPhone className='h-[30px] w-[30px] text-dimWhite' /></label>
@@ -213,7 +264,7 @@ const UserInfo = () => {
                         </div>
                         {status.isFilled === false ? null : errorMessage === 'OK' ?
                             <span className='font-semibold text-green-500 text-lg'>OK</span>
-                            : <span className='font-semibold text-red-500 text-lg'>Password Not Matched</span>
+                            : <span className='font-semibold text-red-500 text-lg'>Password isn't strong enough</span>
                         }
                         <div className='flex flex-col xs:flex-row xs:gap-5 gap-2 items-center justify-between'>
                             <label htmlFor="passwordCf" className='text-dimWhite'>Confirm Password</label>
@@ -225,7 +276,8 @@ const UserInfo = () => {
                         }
                     </div>
                     {
-                        status.passwordSuccess && <div className='flex justify-center items-center gap-2 text-semibold text-lg text-green-500 mx-auto'><BsCheckCircle />Successful Change Password</div>
+                        status.passwordSuccess && (status.currPass ? <div className='flex justify-center items-center gap-2 text-semibold text-lg text-green-500 mx-auto'><BsCheckCircle />Password updated successfully</div>
+                            : <div className='flex justify-center items-center gap-2 text-semibold text-lg text-red-500 mx-auto'><BsXCircle />Current password not matched</div>)
                     }
                     <button type='submit' className='border-2 border-solid border-dimWhite px-5 py-3 rounded-md bg-yellow-800 text-gray-200 w-fit mt-10 mx-auto'>Change Password</button>
                 </form>

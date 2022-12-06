@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { v4 as uuidv4 } from "uuid";
 import accountSlice from "../redux/accountSlice";
+import { Link } from 'react-router-dom'
 
 const Login = () => {
     const navigate = useNavigate();
@@ -75,7 +75,8 @@ const Login = () => {
                         <input value={usernamePassword.password} onChange={handleChange} name="password" className="bg-transparent appearance-none border border-solid border-primary rounded w-full py-2 px-4 text-white leading-tight focus:outline-none" id="password" type="password" placeholder="******************" />
                     </div>
                 </div>
-                {error && <p style={{ color: "red" }}>{error}</p>}
+                <div className='flex justify-center items-center gap-2 text-semibold text-base text-dimWhite m-5 underline underline-offset-1'><Link to="/register">Don't have an account yet? Sign up here</Link></div>
+
                 <div className="md:flex md:items-center">
                     <div className="md:w-1/3"></div>
                     <div className="md:w-2/3">
@@ -84,6 +85,7 @@ const Login = () => {
                         </button>
                     </div>
                 </div>
+                {error && <div className='flex justify-center items-center gap-2 text-semibold text-lg text-red-500 m-5'>{error}</div>}
             </form>
         </section >
     );

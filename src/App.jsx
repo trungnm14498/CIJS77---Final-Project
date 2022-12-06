@@ -10,7 +10,7 @@ function App() {
 	return (
 		<div>
 			<Header />
-			<Routes>
+			{/* <Routes>
 				<Route path='/' element={<Home />} />
 				<Route path='/menu/all' element={<MainMenu />} />
 				<Route path='/menu/:type' element={<MenuItems />} />
@@ -32,9 +32,9 @@ function App() {
 				<Route path='/admin-feedback' element={<AdminFeedbacks />} />
 				<Route path='/admin-order-history' element={<AdminOrderHistories />} />
 				<Route path='*' element={<PageNotFound />} />
-			</Routes>
+			</Routes> */}
 
-			{/* <Routes>
+			<Routes>
 				<Route path='/' element={<Home />} />
 				<Route path='/menu/all' element={<MainMenu />} />
 				<Route path='/menu/:type' element={<MenuItems />} />
@@ -44,22 +44,20 @@ function App() {
 				<Route path='/login' element={<Login />} />
 				<Route path='/register' element={<Register />} />
 
-				<Route path='/information' element={<Protected isLoggedIn={isLogined} lin><Information /></Protected>} />
-				<Route path='/userUpdate' element={<Protected isLoggedIn={isLogined}><UserUpdate /></Protected>} />
-				<Route path='/order' element={<Protected isLoggedIn={isLogined}><Order /></Protected>} />
+				<Route path='/information' element={<Protected isLoggedIn={isLogined} link="*"><Information /></Protected>} />
+				<Route path='/userUpdate' element={<Protected isLoggedIn={isLogined} link="*"><UserUpdate /></Protected>} />
+				<Route path='/order' element={<Protected isLoggedIn={isLogined} link="*"><Order /></Protected>} />
 
 
-				<Route path='/payment' element={<Protected isLoggedIn={isLogined}><Payment /></Protected>} />
-				<Route path='/payment' element={<Payment />} />
+				<Route path='/payment' element={<Protected isLoggedIn={isLogined} link="*"><Payment /></Protected>} />
 
-
-				<Route path='/admin-menu' element={<Protected isLoggedIn={isLogined && role === "admin"}><AdminMenu /></Protected>} />
-				<Route path='/admin-menu/:itemId' element={<Protected isLoggedIn={isLogined && role === "admin"}><AdminDetailMenu /></Protected>} />
-				<Route path='/admin-menu/addNewItem' element={<Protected isLoggedIn={isLogined && role === "admin"}><AdminAddItem /></Protected>} />
-				<Route path='/admin-feedback' element={<Protected isLoggedIn={isLogined && role === "admin"}><AdminFeedbacks /></Protected>} />
-				<Route path='/admin-order-history' element={<Protected isLoggedIn={isLogined && role === "admin"}><AdminOrderHistories /></Protected>} />
+				<Route path='/admin-menu' element={<Protected isLoggedIn={isLogined && role === "admin"} link="*"><AdminMenu /></Protected>} />
+				<Route path='/admin-menu/:itemId' element={<Protected isLoggedIn={isLogined && role === "admin"} link="*"><AdminDetailMenu /></Protected>} />
+				<Route path='/admin-menu/addNewItem' element={<Protected isLoggedIn={isLogined && role === "admin"} link="*"><AdminAddItem /></Protected>} />
+				<Route path='/admin-feedback' element={<Protected isLoggedIn={isLogined && role === "admin"} link="*"><AdminFeedbacks /></Protected>} />
+				<Route path='/admin-order-history' element={<Protected isLoggedIn={isLogined && role === "admin"} link="*"><AdminOrderHistories /></Protected>} />
 				<Route path='*' element={<PageNotFound />} />
-			</Routes> */}
+			</Routes>
 			<Footer />
 		</div >
 	)

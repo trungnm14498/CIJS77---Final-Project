@@ -40,7 +40,8 @@ const CartItems = () => {
                     <Link to='/order' className="btn-main sm:text-xl text-lg sm:mb-2 w-fit">Go to Checkout</Link>
 
                 </div>
-                {!isLogined && <p style={{ color: "red", margin: "0 auto" }}>Please log in to check out</p>}
+                {!isLogined && <div className='flex justify-center items-center gap-2 text-semibold text-lg text-red-500 m-5'>Please log in to check out</div>
+                }
             </div>
         </section>
     );

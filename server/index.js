@@ -101,7 +101,50 @@ server.post('/histories', cors(), async (req, res) => {
     }
 })
 
+// bcrypt.genSalt(10, function (err, salt) {
+//     bcrypt.hash("123", salt, function (err, hash) {
+//         console.log(hash)
+//     });
+// });
 
+
+server.post("/api/changepass", async (req, res) => {
+    try {
+        const { currPassword, newPassword, id } = req.body
+        const status = 401;
+        const message = "Current password not matched";
+
+
+        const salt = await bcrypt.genSalt(10);
+        const hashNewPassword = await bcrypt.hash(newPassword, salt);
+
+        const rawData = fs.readFileSync("./db.json", "utf8");
+        const database = JSON.parse(rawData);
+        const accounts = database.accounts;
+        const user = accounts.find((item) => item.id === id);
+        const indexUser = accounts.findIndex((item) => item.id === id)
+        console.log(indexUser)
+        const validPassword = await bcrypt.compare(currPassword, user.password);
+
+        if (!validPassword) {
+            res.status(status).json({ status, message });
+            return;
+        }
+        else {
+
+            database.accounts[indexUser].password = hashNewPassword;
+            fs.writeFileSync("./db.json", JSON.stringify(database, null, 2));
+            res.status(200).json({ message: "Password changed successfully" });
+
+        }
+
+    }
+    catch (error) {
+        console.log("error ", error);
+        res.status(500).json({ error: "Server Error" });
+    }
+
+})
 server.post("/api/login", async (req, res) => {
     try {
         const { username, password } = req.body;
@@ -167,7 +210,7 @@ server.post("/api/register", async (req, res) => {
         user.id = uuid();
         user.role = "user";
         user.name = "";
-        user.dob = "";
+        user.birthday = "";
         user.phone = "";
         user.email = "";
         user.gender = "";

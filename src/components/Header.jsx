@@ -27,7 +27,7 @@ const Header = () => {
     return (
         <header className=" bg-black fixed top-0 w-full shadow-2xl shadow-primary z-[5]">
             <div className="xl:max-w-[1280px] w-full mx-auto sm:px-10 px-5">
-                <div className="flex items-center justify-items-center text-primary flex justify-between">
+                <div className="flex items-center justify-items-center text-primary justify-between">
                     <Link to='/'>
                         <img src={logo} alt="logo" className="h-[100px] w-[100px]" />
                     </Link>
