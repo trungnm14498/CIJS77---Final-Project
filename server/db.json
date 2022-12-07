@@ -575,27 +575,6 @@
           "fibre": 1
         }
       }
-    },
-    {
-      "name": "Banh Ran",
-      "price": 12.4,
-      "image": "https://i0.wp.com/cachlam.info/wp-content/uploads/2021/12/cong-thuc-banh-ran-doremon-dorayaki-1.jpg?fit=1020%2C574&ssl=1",
-      "categoryId": 1,
-      "detail": {
-        "desc": "",
-        "ingredients": "",
-        "nutritions": {
-          "kcal": 0,
-          "fat": 0,
-          "protein": 0,
-          "carbs": 0,
-          "fibre": 0
-        }
-      },
-      "category": "5",
-      "createdAt": 1670004182171,
-      "updatedAt": 1670004182171,
-      "id": 31
     }
   ],
   "accounts": [
@@ -683,6 +662,20 @@
       "phone": "",
       "email": "",
       "gender": "male",
+      "address": ""
+    },
+    {
+      "username": "test",
+      "password": "$2b$10$47PzL.kFVN0dBiT8eKucseFDKti26DlwNzT35yl0uk8YFXWNUIpna",
+      "createdAt": 1670435777673,
+      "updatedAt": 1670435777673,
+      "id": "bc2fb3dc-3af8-4bcc-be50-98dbec3f7305",
+      "role": "user",
+      "name": "",
+      "birthday": "",
+      "phone": "",
+      "email": "",
+      "gender": "",
       "address": ""
     }
   ],

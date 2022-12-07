@@ -42,9 +42,8 @@ const Header = () => {
                             <ul className="hidden sm:flex justify-center list-none sm:text-2xl text-xl col-span-10 gap-14">
                                 {/* <li><a href="/admin-menu" >Menu</a></li> */}
                                 <li><Link to="/admin-menu" >Menu</Link></li>
-
-                                <li><Link href="/admin-feedback">Feedbacks</Link></li>
-                                <li><Link href="/admin-order-history">Order History</Link></li>
+                                <li><Link to="/admin-feedback">Feedbacks</Link></li>
+                                <li><Link to="/admin-order-history">Order History</Link></li>
                             </ul>
                     }
 

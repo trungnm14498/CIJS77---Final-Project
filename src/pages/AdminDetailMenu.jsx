@@ -79,13 +79,13 @@ const AdminDetailMenu = () => {
                                 </div>
                                 <div className="flex items-center">
                                     <label htmlFor="price" className="w-[120px]" >Price ($): </label>
-                                    <input type="number" name="price" className="ml-4 bg-transparent border border-solid border-primary p-2 rounded-md sm:w-full w-[80%]" defaultValue={itemDisplay.price} placeholder={itemDisplay.price} onChange={(e) => {
+                                    <input type="text" name="price" className="ml-4 bg-transparent border border-solid border-primary p-2 rounded-md sm:w-full w-[80%]" defaultValue={itemDisplay.price} placeholder={itemDisplay.price} onChange={(e) => {
                                         handleOnChange(e, 'price');
                                     }} />
                                 </div>
                                 <div className="flex items-center">
-                                    <label htmlFor="category" className="w-[120px]">Category: </label>
-                                    <select type="text" name="category" className="ml-4 bg-transparent border border-solid border-primary p-2 rounded-md sm:w-full w-[80%]" defaultValue={itemDisplay.categoryId} onChange={(e) => {
+                                    <label htmlFor="categoryId" className="w-[120px]">Category: </label>
+                                    <select type="text" name="categoryId" className="ml-4 bg-transparent border border-solid border-primary p-2 rounded-md sm:w-full w-[80%]" onChange={(e) => {
                                         handleOnChange(e, 'categoryId');
                                     }}>
                                         <option value="1" className="text-black">Starter</option>

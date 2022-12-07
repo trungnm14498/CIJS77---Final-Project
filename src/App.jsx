@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 
 function App() {
 	const isLogined = useSelector(isLoginedSelector)
+	const role = useSelector(getRoleSelector);
 	return (
 		<div>
 			<Header />

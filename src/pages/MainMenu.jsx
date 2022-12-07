@@ -86,7 +86,9 @@ const MainMenu = () => {
                                 image={item.image}
                                 name={item.name}
                                 price={item.price}
-                                id={item.id} />
+                                id={item.id}
+                                type={categories[item.categoryId].name}
+                            />
                         )
                     }) :
                         itemsList.filter(item => item.categoryId === idItemsDisplay).map(item => {
@@ -96,7 +98,9 @@ const MainMenu = () => {
                                     image={item.image}
                                     name={item.name}
                                     price={item.price}
-                                    id={item.id} />
+                                    id={item.id}
+                                    type={categories[item.categoryId].name}
+                                />
                             )
                         })
                 }

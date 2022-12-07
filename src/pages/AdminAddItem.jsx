@@ -36,16 +36,16 @@ const AdminAddItem = () => {
             .then(function (response) {
                 alert('Successfully Add Item!')
             })
+            .then(() => navigate('/admin-menu'))
             .catch(function (response) {
                 //handle error
                 console.log(response);
             });
-        navigate('/admin-menu')
+
     }
 
-    const handleOnChange = (e) => {
+    const handleOnChange = (e, key) => {
         let newValue = e.target.value;
-        const key = e.target.name;
         if (key === 'price' || key === 'categoryId') {
             newValue = parseFloat(newValue)
         }
@@ -103,8 +103,8 @@ const AdminAddItem = () => {
                                 }} />
                             </div>
                             <div className="flex justify-between items-center">
-                                <label htmlFor="category">Category: </label>
-                                <select type="text" name="category" className="ml-2 bg-transparent border border-solid border-primary p-2 rounded-md" required onChange={(e) => {
+                                <label htmlFor="categoryId">Category: </label>
+                                <select type="text" name="categoryId" className="ml-2 bg-transparent border border-solid border-primary p-2 rounded-md" required onChange={(e) => {
                                     handleOnChange(e, 'categoryId');
                                 }}>
                                     <option value="1" className="text-black">Starter</option>

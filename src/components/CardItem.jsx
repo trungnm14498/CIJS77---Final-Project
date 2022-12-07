@@ -30,7 +30,7 @@ const CardItem = ({ id, image, name, price, type }) => {
         <div className="flex flex-col justify-center items-center gap-3 h-fit px-7 py-5 bg-transparent border-2 border-solid border-primary rounded-lg">
             <div className="flex justify-center items-center">
                 <img src={image} alt={name} className="w-[270px] h-[270px] rounded-lg cursor-pointer"
-                    onClick={() => { role === "user" ? navigate(`/menu/${type}/${id}`) : null }}
+                    onClick={() => { navigate(`/menu/${type}/${id}`) }}
                 />
             </div>
             <div className="flex flex-col justify-center items-center">
