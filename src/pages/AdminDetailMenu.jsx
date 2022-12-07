@@ -17,6 +17,7 @@ const AdminDetailMenu = () => {
         if (key === 'price' || key === 'categoryId') {
             newValue = parseFloat(newValue)
         }
+        console.log(newValue);
         setNewInfo((prev) => { return { ...prev, [key]: newValue } })
     }
 
@@ -88,6 +89,7 @@ const AdminDetailMenu = () => {
                                     <select type="text" name="categoryId" className="ml-4 bg-transparent border border-solid border-primary p-2 rounded-md sm:w-full w-[80%]" onChange={(e) => {
                                         handleOnChange(e, 'categoryId');
                                     }}>
+                                        <option value="" className="text-black hidden"></option>
                                         <option value="1" className="text-black">Starter</option>
                                         <option value="2" className="text-black">Pho</option>
                                         <option value="3" className="text-black">Noodle</option>

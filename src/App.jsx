@@ -1,7 +1,7 @@
 import { CartEmpty, CartItems, Home, ItemDetail, Login, MenuItems, Order, Payment, Register, Information, UserUpdate, AdminMenu, AdminDetailMenu, AdminAddItem, AdminFeedbacks, AdminOrderHistories, MainMenu, PageNotFound } from './pages'
 import { Route, Routes } from 'react-router-dom';
 import { Header, Footer } from './components';
-import Protected from './Protected/Protected';
+import Protected from './Protected/Protected'
 import { isLoginedSelector, getRoleSelector } from "./redux/selectors"
 import { useSelector } from "react-redux";
 

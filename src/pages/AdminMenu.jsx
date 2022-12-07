@@ -16,9 +16,11 @@ const AdminMenu = () => {
     const [idItemsDisplay, setIdItemsDisplay] = useState(0);
     const [sortValue, setSortValue] = useState('');
 
+
     if (categories.every(item => item.id !== 0)) {
         const categoryAll = { 'id': 0, 'name': 'all' }
         categories.unshift(categoryAll);
+        categories.sort((a, b) => { return a.id - b.id });
     }
 
     const getSortValue = (e) => {
@@ -43,7 +45,7 @@ const AdminMenu = () => {
                     setItemsList(response.data);
                 })
         }
-    }, [sortValue]);
+    }, [sortValue, itemsList]);
 
     return (
         <section className="xl:max-w-[1280px] w-full mx-auto sm:px-10 px-20 flex flex-col sm:mt-40 mt-28" >
@@ -78,7 +80,9 @@ const AdminMenu = () => {
                                 image={item.image}
                                 name={item.name}
                                 price={item.price}
-                                id={item.id} />
+                                id={item.id}
+                                type={categories[item.categoryId].name}
+                            />
                         )
                     }) :
                         itemsList.filter(item => item.categoryId === idItemsDisplay).map(item => {
@@ -88,7 +92,9 @@ const AdminMenu = () => {
                                     image={item.image}
                                     name={item.name}
                                     price={item.price}
-                                    id={item.id} />
+                                    id={item.id}
+                                    type={categories[item.categoryId].name}
+                                />
                             )
                         })
                 }

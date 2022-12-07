@@ -15,14 +15,17 @@ const MainMenu = () => {
 
     const { data: categories } = useGetData(true, categoriesAPI);
     const { data: itemsList, setData: setItemsList } = useGetData(true, menuAPI);
-    const [idItemsDisplay, setIdItemsDisplay] = useState(0);
     const totalPrice = useSelector(selectItemTotal);
     const items = useSelector(selectItem);
     const [sortValue, setSortValue] = useState('');
+    console.log(itemsList[0]);
+    console.log(categories);
+
 
     if (categories.every(item => item.id !== 0)) {
         const categoryAll = { 'id': 0, 'name': 'all' }
         categories.unshift(categoryAll);
+        categories.sort((a, b) => { return a.id - b.id });
     }
 
     const getSortValue = (e) => {
@@ -79,7 +82,7 @@ const MainMenu = () => {
 
             <div className="flex flex-wrap justify-center items-center gap-5">
                 {
-                    idItemsDisplay === 0 ? itemsList.map(item => {
+                    itemsList.map(item => {
                         return (
                             <CardItem
                                 key={item.id}
@@ -90,19 +93,7 @@ const MainMenu = () => {
                                 type={categories[item.categoryId].name}
                             />
                         )
-                    }) :
-                        itemsList.filter(item => item.categoryId === idItemsDisplay).map(item => {
-                            return (
-                                <CardItem
-                                    key={item.id}
-                                    image={item.image}
-                                    name={item.name}
-                                    price={item.price}
-                                    id={item.id}
-                                    type={categories[item.categoryId].name}
-                                />
-                            )
-                        })
+                    })
                 }
             </div>
         </section>

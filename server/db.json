@@ -160,7 +160,8 @@
           "carbs": 54.6,
           "fibre": 3
         }
-      }
+      },
+      "updatedAt": 1670446608572
     },
     {
       "id": 8,
@@ -575,6 +576,26 @@
           "fibre": 1
         }
       }
+    },
+    {
+      "name": "Banh Ran",
+      "price": 11.2,
+      "image": "https://i0.wp.com/cachlam.info/wp-content/uploads/2021/12/cong-thuc-banh-ran-doremon-dorayaki-1.jpg?fit=1020%2C574&ssl=1",
+      "categoryId": 5,
+      "detail": {
+        "desc": "",
+        "ingredients": "",
+        "nutritions": {
+          "kcal": 0,
+          "fat": 0,
+          "protein": 0,
+          "carbs": 0,
+          "fibre": 0
+        }
+      },
+      "createdAt": 1670443660078,
+      "updatedAt": 1670446575660,
+      "id": 31
     }
   ],
   "accounts": [
