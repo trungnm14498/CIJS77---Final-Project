@@ -689,15 +689,15 @@
       "username": "test",
       "password": "$2b$10$47PzL.kFVN0dBiT8eKucseFDKti26DlwNzT35yl0uk8YFXWNUIpna",
       "createdAt": 1670435777673,
-      "updatedAt": 1670435777673,
+      "updatedAt": 1670446770064,
       "id": "bc2fb3dc-3af8-4bcc-be50-98dbec3f7305",
       "role": "user",
-      "name": "",
-      "birthday": "",
-      "phone": "",
-      "email": "",
-      "gender": "",
-      "address": ""
+      "name": "test",
+      "birthday": "1998-04-14",
+      "phone": "0347890198",
+      "email": "trungnm.14498@gmail.com",
+      "gender": "male",
+      "address": "An Khanh, Hoai Duc, Ha Noi"
     }
   ],
   "histories": [
